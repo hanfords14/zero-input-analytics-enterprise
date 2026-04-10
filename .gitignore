@@ -6,6 +6,7 @@ node_modules/
 
 # Runtime state (deduplication)
 state/last_insight.json
+backend/node/state/state/last_insight.json
 
 # Editor / OS noise
 .vscode/
