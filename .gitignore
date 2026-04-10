@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Runtime state (deduplication)
+state/last_insight.json
+
+# Editor / OS noise
+.vscode/
+.DS_Store

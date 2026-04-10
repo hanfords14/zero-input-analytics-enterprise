@@ -1,0 +1,1 @@
+# Zero‑Input Analytics — Enterprise Ready
