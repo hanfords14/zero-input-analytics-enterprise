@@ -1,0 +1,33 @@
+name: Zero-Input Analytics Worker
+
+on:
+  schedule:
+    # Runs daily at 9:00am Central Time (14:00 UTC)
+    - cron: '0 14 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  run-worker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run analytics worker
+        run: node jobs/worker.mjs
+        env:
+          STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          NODE_ENV: production
